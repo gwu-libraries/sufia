@@ -1,6 +1,6 @@
 module Sufia
   module FacetsHelperBehavior
-    include Hydra::FacetsHelperBehavior
+    include Blacklight::FacetsHelperBehavior
 
     # Override to remove the label class (easier integration with bootstrap)
     # and handles arrays

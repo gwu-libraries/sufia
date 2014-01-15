@@ -167,6 +167,7 @@ describe GenericFilesController do
         files.first.label.should == 'world.png'
       end
       it "should ingest directories from the filesystem" do
+        GenericFile.any_instance.stub(:characterize)
         lambda { post :create, local_file: ["world.png", "import"], batch_id: "xw42n7934"}.should change(GenericFile, :count).by(4)
         response.should redirect_to Sufia::Engine.routes.url_helpers.batch_edit_path('xw42n7934')
         # These files should have been moved out of the upload directory

@@ -49,7 +49,9 @@ class GenericFileRdfDatastream < ActiveFedora::NtriplesRDFDatastream
     map.based_near(:in => RDF::FOAF) do |index|
       index.as :stored_searchable, :facetable
     end
-    map.related_url(:to => "seeAlso", :in => RDF::RDFS)
+    map.related_url(:to => "seeAlso", :in => RDF::RDFS) do |index|
+      index.as :displayable
+    end
   end
   begin
     LocalAuthority.register_vocabulary(self, "subject", "lc_subjects")

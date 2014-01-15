@@ -9,6 +9,13 @@ module Sufia
 
       # moved check into the routine so we can handle the user with no access 
       prepend_before_filter :normalize_identifier 
+      rescue_from CanCan::AccessDenied do |exception|
+        if current_user and current_user.persisted?
+          redirect_to root_url, :alert => exception.message
+        else
+          redirect_to new_user_session_url, :alert => exception.message
+        end
+      end
     end
     
     def datastream_name

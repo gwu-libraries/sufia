@@ -77,7 +77,7 @@ describe DownloadsController do
         it "should deny access" do
           get "show", :id => "test1"
           response.should redirect_to root_path
-          flash[:alert].should == "You do not have sufficient access privileges to read this document, which has been marked private."
+          flash[:alert].should == "You are not authorized to access this page."
         end
       end
     end

@@ -11,8 +11,10 @@ class TestAppGenerator < Rails::Generators::Base
     remove_file 'spec/factories/users.rb'
   end
 
-  def remove_index_page
-    remove_file 'public/index.html'
+  def add_create_permisions 
+    insert_into_file 'app/models/ability.rb', after: 'custom_permissions' do
+      "\n    can :create, :all if user_groups.include? 'registered'\n"
+    end
   end
 
   def copy_rspec_rake_task

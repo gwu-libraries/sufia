@@ -343,7 +343,7 @@ describe GenericFile do
       u = FactoryGirl.create(:user)
       @f = GenericFile.new.tap do |gf|
         gf.apply_depositor_metadata(u)
-        gf.stub(:characterize_if_changed).and_yield #don't run characterization
+        #gf.stub(:characterize_if_changed).and_yield #don't run characterization
         gf.save!
       end
       @t = Trophy.create(user_id: u.id, generic_file_id: @f.pid)
@@ -352,7 +352,7 @@ describe GenericFile do
       Trophy.where(generic_file_id: @f.pid).count.should == 1
     end
     it "should remove all trophies when file is deleted" do
-      @f.should_receive(:cleanup_trophies)
+      # @f.should_receive(:cleanup_trophies)
       @f.destroy
       Trophy.where(generic_file_id: @f.pid).count.should == 0
     end
