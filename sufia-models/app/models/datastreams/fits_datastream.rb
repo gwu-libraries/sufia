@@ -180,4 +180,10 @@ class FitsDatastream < ActiveFedora::OmDatastream
     end
     builder.doc
   end
+
+  # prefix for the solr fields
+  # this will be the default behavior in ActiveFedora 8
+  def prefix
+    ""
+  end
 end

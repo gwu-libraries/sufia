@@ -19,4 +19,9 @@ class ParanoidRightsDatastream < Hydra::Datastream::RightsMetadata
     end
     return valid
   end
+
+  # this probably isn't needed by hydra-head pre2, because it won't call super()
+  def prefix
+    ""
+  end
 end
